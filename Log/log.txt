@@ -1,0 +1,56 @@
+A new movie document with name Plane has been created by Thee
+A new movie document with name Black Adam has been created by Thee
+A new movie document with name Future Movie has been created by Thee
+Query took 292 miliseconds to fetch the documents
+Query took 287 miliseconds to fetch the documents
+Query took 1856 miliseconds to fetch the documents
+Query took 301 miliseconds to fetch the documents
+Query took 297 miliseconds to fetch the documents
+Query took 328 miliseconds to fetch the documents
+Query took 295 miliseconds to fetch the documents
+Query took 289 miliseconds to fetch the documents
+Query took 269 miliseconds to fetch the documents
+Query took 298 miliseconds to fetch the documents
+Query took 287 miliseconds to fetch the documents
+Query took 284 miliseconds to fetch the documents
+A new movie document with name test 1 has been created by Thee
+Query took 264 miliseconds to fetch the documents
+Query took 244 miliseconds to fetch the documents
+Query took 266 miliseconds to fetch the documents
+A new movie document with name test 8 has been created by Thee
+Query took 243 miliseconds to fetch the documents
+Query took 242 miliseconds to fetch the documents
+Query took 244 miliseconds to fetch the documents
+Query took 241 miliseconds to fetch the documents
+Query took 265 miliseconds to fetch the documents
+Query took 885 miliseconds to fetch the documents
+Query took 348 miliseconds to fetch the documents
+Query took 258 miliseconds to fetch the documents
+Query took 288 miliseconds to fetch the documents
+Query took 274 miliseconds to fetch the documents
+Query took 292 miliseconds to fetch the documents
+Query took 283 miliseconds to fetch the documents
+Query took 240 miliseconds to fetch the documents
+Query took 264 miliseconds to fetch the documents
+Query took 258 miliseconds to fetch the documents
+Query took 263 miliseconds to fetch the documents
+Query took 264 miliseconds to fetch the documents
+Query took 263 miliseconds to fetch the documents
+Query took 263 miliseconds to fetch the documents
+Query took 312 miliseconds to fetch the documents
+Query took 263 miliseconds to fetch the documents
+Query took 265 miliseconds to fetch the documents
+Query took 255 miliseconds to fetch the documents
+Query took 279 miliseconds to fetch the documents
+Query took 325 miliseconds to fetch the documents
+Query took 374 miliseconds to fetch the documents
+Query took 312 miliseconds to fetch the documents
+Query took 263 miliseconds to fetch the documents
+Query took 269 miliseconds to fetch the documents
+Query took 1601 miliseconds to fetch the documents
+Query took 320 miliseconds to fetch the documents
+Query took 465 miliseconds to fetch the documents
+Query took 261 miliseconds to fetch the documents
+Query took 372 miliseconds to fetch the documents
+Query took 299 miliseconds to fetch the documents
+Query took 261 miliseconds to fetch the documents

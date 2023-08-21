@@ -12,18 +12,22 @@ const signToken = id => {
     });
 }
 
-exports.signup = asyncErrorHandler ( async (req, res, next) => {
-    const newUser = await User.create(req.body);
+const createSendToken = (user, statusCode, res) => {
+    const token = signToken(user._id);
 
-    const token = signToken(newUser._id);
-
-    res.status(201).json({
+    res.status(statusCode).json({
         status: "Success",
         token,
         data: {
-            user: newUser
+            user
         }
     });
+}
+
+exports.signup = asyncErrorHandler ( async (req, res, next) => {
+    const newUser = await User.create(req.body);
+
+    createSendToken(newUser, 201, res);
 });
 
 exports.login = asyncErrorHandler(async (req, res, next) => {
@@ -48,12 +52,7 @@ exports.login = asyncErrorHandler(async (req, res, next) => {
         return next(error);
     }
 
-    const token = signToken(user._id);
-
-    res.status(200).json({
-        status: "Success",
-        token
-    });
+    createSendToken(user, 200, res);
 });
 
 exports.protect = asyncErrorHandler(async (req, res, next) => {
@@ -71,7 +70,7 @@ exports.protect = asyncErrorHandler(async (req, res, next) => {
     //2. Validate the token
     const decodedToken = await util.promisify(jwt.verify)(token, process.env.SECRET_STR);
   
-    //3. If the user exists (If the user logedin and after theat user get deleted from records)
+    //3. If the user exists (If the user logedin and after that user get deleted from records)
     const user = await User.findById(decodedToken.id);
 
     if(!user){
@@ -166,15 +165,35 @@ exports.resetPassword = asyncErrorHandler( async (req, res, next) => {
     user.confirmPassword = req.body.confirmPassword;
     user.passwordResetToken = undefined;
     user.passwordResetTokenExpires = undefined;
-    user.passwordChangedAt = Date.now();
+    user.passwordChangedAt = Date.now() - 1000;
 
     await user.save();
 
     //3. Login the user
-    const loginToken = signToken(user._id);
+    createSendToken(user, 200, res);
+});
 
-    res.status(200).json({
-        status: "Success",
-        token: loginToken
-    });
-})
+exports.updatePassword = asyncErrorHandler( async (req, res, next) => {
+    // 1) Get user from collection
+    const user = await User.findById(req.user.id).select('+password');
+
+    // Why not checking whether user exists with this id or not
+    // Let's say the scenario, user loggedin and have a jwt token, but after logging in and having a token,
+    // user deleted from the db records. ???
+
+    // 2) Check if POSTed current password is correct
+    if(!(await user.comparePasswordInDb(req.body.currentPassword, user.password))){
+        return next(new CustomError(`Current Password isn't matched ! :(`, 401));
+    }
+
+    // 3) If so, update password
+    user.password = req.body.password;
+    user.confirmPassword = req.body.confirmPassword;
+    user.passwordChangedAt = Date.now();
+    await user.save();
+    //user.findByIdAndUpdate() won't work (cause we need validations as well as pre-post hooks on 'save')
+
+    // 4) Login user and send JWT
+    createSendToken(user, 200, res);
+
+});

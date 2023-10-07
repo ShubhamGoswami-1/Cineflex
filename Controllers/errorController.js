@@ -16,8 +16,9 @@ const castErrorHandler = (err) => {
 
 
 const duplicateKeyErrorHandler = (err) => {
-    const name = err.keyValue.name;
-    const msg = `There is already a movie with name ${name}. Please use another name!`
+    const propertyName = Object.keys(err.keyValue)[0];
+    const propertyValue = err.keyValue[propertyName];
+    const msg = `There is already a ${propertyName} with value ${propertyValue}. Please use another ${propertyName}!`
     return new CustomError(msg, 400);
 }
 
